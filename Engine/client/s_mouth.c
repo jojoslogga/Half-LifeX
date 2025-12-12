@@ -22,7 +22,7 @@ GNU General Public License for more details.
 
 void SND_InitMouth( int entnum, int entchannel )
 {
-	if(( entchannel == CHAN_VOICE || entchannel == CHAN_STREAM ) && entnum > 0 )
+	if(( entchannel == CHAN_AUTO || entchannel == CHAN_VOICE || entchannel == CHAN_STREAM ) && entnum > 0 )
 	{
 		cl_entity_t	*clientEntity;
 
@@ -40,7 +40,7 @@ void SND_InitMouth( int entnum, int entchannel )
 
 void SND_CloseMouth( channel_t *ch )
 {
-	if( ch->entchannel == CHAN_VOICE || ch->entchannel == CHAN_STREAM )
+	if( ch->entchannel == CHAN_AUTO || ch->entchannel == CHAN_VOICE || ch->entchannel == CHAN_STREAM )
 	{
 		cl_entity_t	*clientEntity;
 

@@ -619,7 +619,7 @@ void MIX_MixChannelsToPaintbuffer( int endtime, int rate, int outputRate )
 			ch->pitch = VOX_ModifyPitch( ch, ch->basePitch * 0.01f );
 		else ch->pitch = ch->basePitch * 0.01f;
 
-		if( CL_GetEntityByIndex( ch->entnum ) && ( ch->entchannel == CHAN_VOICE ))
+		if( CL_GetEntityByIndex( ch->entnum ) && ( ch->entchannel == CHAN_AUTO || ch->entchannel == CHAN_VOICE || ch->entchannel == CHAN_STREAM ))
 		{
 			if( pSource->width == 1 )
 				SND_MoveMouth8( ch, pSource, sampleCount );
