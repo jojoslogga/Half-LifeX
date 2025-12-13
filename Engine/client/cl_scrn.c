@@ -307,14 +307,10 @@ void SCR_MakeScreenShot( void )
 	case scrshot_plaque:
 		iRet = VID_ScreenShot( cls.shotname, VID_LEVELSHOT );
 		break;
-// FIXME:		
-// Disabled for now as there is a leak in the Xash3D menu game ui
-// code where the save game snapshots are never released, need to fix
-// before renabling savegame snapshots
-/*	case scrshot_savegame:
+	case scrshot_savegame:
 		iRet = VID_ScreenShot( cls.shotname, VID_MINISHOT );
 		break;
-*/	case scrshot_envshot:
+	case scrshot_envshot:
 		iRet = VID_CubemapShot( cls.shotname, viewsize, cls.envshot_vieworg, false );
 		break;
 	case scrshot_skyshot:

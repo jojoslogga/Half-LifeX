@@ -502,10 +502,10 @@ qboolean Image_SaveBMP( const char *name, rgbdata_t *pix )
 
 	// Bogus file header check
 	bmfh.bfType = MAKEWORD( 'B', 'M' );
-	bmfh.bfSize = sizeof( bmfh ) + sizeof( bmih ) + cbBmpBits + cbPalBytes;
+	bmfh.bfSize = 14 + sizeof( bmih ) + cbBmpBits + cbPalBytes;
 	bmfh.bfReserved1 = 0;
 	bmfh.bfReserved2 = 0;
-	bmfh.bfOffBits = sizeof( bmfh ) + sizeof( bmih ) + cbPalBytes;
+	bmfh.bfOffBits = 14 + sizeof( bmih ) + cbPalBytes;
 
 #ifndef _XBOX
 	if( host.write_to_clipboard )
@@ -519,7 +519,11 @@ qboolean Image_SaveBMP( const char *name, rgbdata_t *pix )
 	{
 #endif
 		// write header
-		FS_Write( pfile, &bmfh, sizeof( bmfh ));
+		FS_Write( pfile, &bmfh.bfType, sizeof(bmfh.bfType) );
+		FS_Write( pfile, &bmfh.bfSize, sizeof(bmfh.bfSize) );
+		FS_Write( pfile, &bmfh.bfReserved1, sizeof(bmfh.bfReserved1) );
+		FS_Write( pfile, &bmfh.bfReserved2, sizeof(bmfh.bfReserved2) );
+		FS_Write( pfile, &bmfh.bfOffBits, sizeof(bmfh.bfOffBits) );
 #ifndef _XBOX
 	}
 #endif

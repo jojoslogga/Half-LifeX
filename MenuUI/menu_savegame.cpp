@@ -459,6 +459,26 @@ static void UI_SaveGame_Init( void )
 
 /*
 =================
+UI_SaveGame_Close
+=================
+*/
+static void UI_SaveGame_Close( void )
+{
+	int i;
+	char saveshot[128];
+
+	for ( i = 0; i < UI_MAXGAMES; i++ )
+	{
+		if( strlen( uiSaveGame.saveName[i] ))
+		{
+			sprintf( saveshot, "save\\%s.bmp", uiSaveGame.saveName[i] );
+			PIC_Free( saveshot );
+		}
+	}
+}
+
+/*
+=================
 UI_SaveGame_Precache
 =================
 */
@@ -485,6 +505,8 @@ void UI_SaveGame_Menu( void )
 
 	UI_SaveGame_Precache();
 	UI_SaveGame_Init();
+
+	uiSaveGame.menu.closeFunc = UI_SaveGame_Close;
 
 	UI_PushMenu( &uiSaveGame.menu );
 }

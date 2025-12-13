@@ -160,6 +160,7 @@ typedef struct
 	const char	*(*keyFunc)( int key, int down );
 	void		(*activateFunc)( void );
 	void		(*vidInitFunc)( void );
+	void		(*closeFunc)( void );
 } menuFramework_s;
 
 typedef struct

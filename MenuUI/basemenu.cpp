@@ -982,6 +982,9 @@ UI_PopMenu
 */
 void UI_PopMenu( void )
 {
+	if( uiStatic.menuActive && uiStatic.menuActive->closeFunc )
+		uiStatic.menuActive->closeFunc();
+
 	UI_StartSound( uiSoundOut );
 
 	uiStatic.menuDepth--;
